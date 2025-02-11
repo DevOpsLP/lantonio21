@@ -12,6 +12,11 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use('/webhook', webhookRouter);
 
+// Health check route
+app.get('/', (req, res) => {
+  res.status(200).send('Server is up');
+});
+
 // Check account balance before starting the server
 checkAccountBalance()
   .then((isValid) => {
